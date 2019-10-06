@@ -41,8 +41,21 @@ app.get('/apps', (req,res) =>{
       .toLowerCase()
       .includes(filterCriteria.toLowerCase()) )
   
-  //Test call to return the entire list
-    
+  /*After the list has been filtered you can now sort it. The sort() function does most of the heavy lifting, you just
+  need to pass in which sorting criteria you wan to use. The first validates the input (even though you have a dropdown
+  most likely you want to validate your code server side as well). If the sorting criteria is good you just need to 
+  take the results and then pass them through the finction listed below. It uses a ternary operator with three potential 
+  outcomes 1, -1, or 0. Read more about it if you don't quite get it as there is plenty out there to refer to.*/
+  if (sortCriteria) {
+    if (!['rating', 'app'].includes(sortCriteria)){
+      return res
+        .status(400)
+        .send('Sort must be one of rank or app')
+    }
+    results.sort((a,b) => {
+      return a[sortCriteria] > b[sortCriteria] ? 1 : a[sortCriteria] < b[sortCriteria] ? -1 : 0;
+    })
+  }
   res.json(results);
 })
 
