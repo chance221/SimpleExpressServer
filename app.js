@@ -6,7 +6,7 @@ const appList = require('./playapps/playapps.js')
 
 app.use(cors());
 
-//app.use(morgan('common'))
+app.use(morgan('common'))
 
 
 app.get('/', (req, res)  => {
