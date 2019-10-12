@@ -6,12 +6,8 @@ const appList = require('./playapps/playapps.js')
 
 app.use(cors());
 
-app.use(morgan('common'))
+//app.use(morgan('common'))
 
-app.listen(8000, () => {
-  //This opens up a port to listen to local request.
-  console.log('Server is listening on port 8000')
-})
 
 app.get('/', (req, res)  => {
   console.log('The server is listenin')
@@ -60,3 +56,4 @@ app.get('/apps', (req,res) =>{
 })
 
 
+module.exports = app
